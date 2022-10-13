@@ -1,0 +1,99 @@
+.Bookmakers {
+    padding-bottom: 200px;
+    &-top {
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 23px 16px 15px;
+        gap: 15px;
+
+        &-sort {
+            text-align: right;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &-title {
+            @include secondary-font();
+
+            font-size: 1rem;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+
+            &-flag {
+                max-width: 18px;
+
+                img {
+                    width: 100%
+                }
+            }
+        }
+
+        &-changeView {
+            display: none;
+        }
+    }
+
+    &-items {
+        padding: 0 16px;
+        list-style: none;
+        counter-reset: bookmakers-counter;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: $bookmakers-transition-time;
+    }
+}
+
+@media (min-width: $desktop) {
+    .Bookmakers {
+        max-width: $desktop;
+        margin: 0 auto;
+
+
+        &-top {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 45px 35px 29px;
+
+            &-sort {
+                font-size: 1.071em;
+            }
+
+            &-title {
+                font-size: 2.429em;
+                gap: 12px;
+                position: relative;
+
+                &-flag {
+                    max-width: 44px;
+                    line-height: 0;
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 71px;
+                    height: 4px;
+                    background-color: $color-orangey-red;
+                    bottom: -10px;
+                }
+            }
+
+            &-changeView {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                &-label {
+                    text-decoration: underline;
+                    font-size: 1.071em;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+@media (min-width: $desktop) {
+    .Bookmakers-items--gridView {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+
+        .Bookmaker {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            &:before {
+                position: absolute;
+                left: 13px;
+                top: 8px
+            }
+
+            &-image {
+                padding-top: 15px;
+            }
+
+            &-rating {
+                margin-bottom: -10px;
+            }
+
+            &-review {
+                margin-bottom: 15px;
+            }
+
+            &-description {
+                &--desktop {
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    gap: 5px;
+
+                }
+            }
+        }
+
+        .Button {
+            padding: 12px 42px;
+
+            &-icon {
+                right: 12px;
+            }
+        }
+    }
+}
+

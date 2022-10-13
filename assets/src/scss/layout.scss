@@ -1,0 +1,23 @@
+.Layout {
+    min-height: 100vh;
+
+    &-header {
+
+    }
+
+    &-main {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../../images/background_figure_mobile.png");
+
+    }
+}
+@media (min-width: $desktop) {
+    .Layout {
+        &-main {
+            background-repeat: no-repeat;
+            background-image: url("../../images/background_figure.png");
+
+        }
+    }
+}

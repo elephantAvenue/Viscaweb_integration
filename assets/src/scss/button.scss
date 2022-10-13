@@ -1,0 +1,44 @@
+.Button {
+    align-items: center;
+    background-color: $color-orangey-red;
+    display: flex;
+    padding: 21px 13px;
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: darken($color-orangey-red, 15%);
+    }
+
+    &-label {
+        display: none;
+    }
+
+}
+
+@media (min-width: $desktop) {
+
+    .Button {
+        border-radius: 4px;
+        justify-content: center;
+        padding: 12px;
+
+        &-label {
+            color: $color-white;
+            display: block;
+            text-align: center;
+        }
+
+        &-icon {
+            position: absolute;
+            right: 30px;
+
+            .int-icon.icon--13 {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+}

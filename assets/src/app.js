@@ -1,0 +1,18 @@
+import './js/app'
+
+import '../images/images'
+
+import 'normalize.css'
+import './scss/mixins.scss'
+import './scss/icons.scss'
+import './scss/general.scss'
+import './scss/layout.scss'
+import './scss/variables.scss'
+import './scss/card.scss'
+import './scss/header.scss'
+import './scss/switch.scss'
+import './scss/bookmakers.scss'
+import './scss/bookmaker.scss'
+import './scss/bookmaker-gridview.scss'
+import './scss/bookmaker-ordered-alphabetically.scss'
+import './scss/button.scss'

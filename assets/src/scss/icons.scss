@@ -1,0 +1,96 @@
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function url-encode($string) {
+    $map: ("%": "%25",
+        "<": "%3C",
+        ">": "%3E",
+        "!": "%21",
+        "*": "%2A",
+        "'": "%27",
+        '"': "%22",
+        "(": "%28",
+        ")": "%29",
+        ";": "%3B",
+        ":": "%3A",
+        "@": "%40",
+        "&": "%26",
+        "=": "%3D",
+        "+": "%2B",
+        "$": "%24",
+        ",": "%2C",
+        "/": "%2F",
+        "?": "%3F",
+        "#": "%23",
+        "[": "%5B",
+        "]": "%5D"
+    );
+    $new: $string;
+
+    @each $search,
+    $replace in $map {
+        $new: str-replace($new, $search, $replace);
+    }
+
+    @return $new;
+}
+
+@mixin icon-color($icon, $color1, $color2: $color1, $color3: $color1) {
+    $string: $icon;
+    $string: str-replace($string, "classColor1", $color1);
+    $string: str-replace($string, "classColor2", $color2);
+    $string: str-replace($string, "classColor3", $color3);
+    $iconFinal: url-encode($string);
+
+    background-image: url('data:image/svg+xml,#{$iconFinal}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+$icon-right-arrow: '<svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.1113 5.99274L2.32613 0.207681C2.19233 0.0737718 2.01371 0 1.82326 0C1.6328 0 1.45419 0.0737718 1.32038 0.207681L0.894346 0.633613C0.617121 0.911155 0.617121 1.36224 0.894346 1.63936L5.75229 6.4973L0.888956 11.3606C0.755152 11.4945 0.681274 11.6731 0.681274 11.8634C0.681274 12.054 0.755152 12.2325 0.888956 12.3665L1.31499 12.7923C1.4489 12.9262 1.62741 13 1.81787 13C2.00832 13 2.18694 12.9262 2.32074 12.7923L8.1113 7.00198C8.24542 6.86764 8.31908 6.68829 8.31866 6.49762C8.31908 6.30622 8.24542 6.12697 8.1113 5.99274Z" fill="classColor1"/></svg>';
+
+$icons: (
+    right-arrow: $icon-right-arrow,
+);
+
+$icon-colors: (
+    primary: $color-white,
+    white: $color-white,
+    black: $color-black,
+);
+
+.int-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+
+    &.icon--13 {
+        width: 13px;
+        height: 13px;
+    }
+
+
+
+    @each $key, $val in $icons {
+        &.icon-#{$key} {
+            $value: map-get($icon-colors, 'primary');
+            @include icon-color($val, $value);
+
+            @each $keyColor, $color in $icon-colors {
+                &.icon--#{$keyColor} {
+                    @include icon-color($val, $color);
+                }
+            }
+        }
+    }
+}
